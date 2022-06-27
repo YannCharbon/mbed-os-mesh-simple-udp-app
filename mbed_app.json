@@ -1,0 +1,70 @@
+{
+    "config": {
+        "enable-led-control-example": true,
+        "LED": "NC",
+        "BUTTON_1": "NC",
+        "BUTTON_2": "NC",
+        "RELAY_CONTROL": "NC",
+        "BUTTON_MODE": "PullUp"
+    },
+    "macros": ["MBEDTLS_USER_CONFIG_FILE=\"mbedtls_wisun_config.h\""],
+    "target_overrides": {
+        "*": {
+            "nsapi.default-mesh-type": "WISUN",
+            "mbed-mesh-api.wisun-network-name": "\"Wi-SUN Network\"",
+            "nanostack.configuration": "ws_router",
+            "mbed-mesh-api.certificate-header": "\"wisun_certificates.h\"",
+            "mbed-mesh-api.root-certificate": "WISUN_ROOT_CERTIFICATE",
+            "mbed-mesh-api.own-certificate": "WISUN_CLIENT_CERTIFICATE",
+            "mbed-mesh-api.own-certificate-key": "WISUN_CLIENT_KEY",
+            "mbed-trace.enable": true,
+            "mbed-trace.max-level": "TRACE_LEVEL_INFO",
+            "platform.stdio-convert-newlines": false,
+            "platform.stdio-baud-rate": 115200,
+            "platform.stdio-buffered-serial": true,            
+            "target.device_has_add": ["802_15_4_PHY"]
+        },
+        "K64F": {
+            "LED": "LED1",
+            "BUTTON": "SW2"
+        },
+        "K66F": {
+            "LED": "LED1",
+            "BUTTON": "SW2"
+        },
+        "NUCLEO_F429ZI":  {
+            "LED": "LED1",
+            "BUTTON": "BUTTON1",
+            "BUTTON_MODE": "PullDown",
+            "s2lp.provide-default": true
+        },
+        "NUCLEO_L486RG":  {
+            "LED": "ARDUINO_UNO_D14",
+            "BUTTON_1": "BUTTON1",
+            "mbed-mesh-api.heap-size": 28000,
+            "mbed-mesh-api.wisun-uc-channel-function": "0xFF",
+            "mbed-mesh-api.wisun-uc-fixed-channel": 0,
+            "mbed-mesh-api.wisun-bc-channel-function": "0xFF",
+            "mbed-mesh-api.wisun-bc-fixed-channel": 0,
+            "mbed-mesh-api.wisun-regulatory-domain": 3,
+            "mbed-mesh-api.wisun-operating-class": 2,
+            "mbed-mesh-api.wisun-operating-mode": "0x2a",
+            "mbed-mesh-api.wisun-network-size": 1,
+            "s2lp.provide-default": true
+        },
+        "EFR32_CUSTOM": {
+            "LED": "LED1",
+            "BUTTON_1": "BUTTON1",
+            "BUTTON_2": "BUTTON2",
+            "mbed-mesh-api.wisun-uc-channel-function": "0xFF",
+            "mbed-mesh-api.wisun-uc-fixed-channel": 0,
+            "mbed-mesh-api.wisun-bc-channel-function": "0xFF",
+            "mbed-mesh-api.wisun-bc-fixed-channel": 0,
+            "mbed-mesh-api.wisun-regulatory-domain": 3,
+            "mbed-mesh-api.wisun-operating-class": 2,
+            "mbed-mesh-api.wisun-operating-mode": "0x2a",
+            "mbed-mesh-api.wisun-network-size": 1,
+            "s2lp.provide-default": false
+        }
+    }
+}

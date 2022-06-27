@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "pa.h": "c",
+        "chrono": "cpp",
+        "list": "c",
+        "functional": "cpp",
+        "mstd_atomic": "cpp",
+        "mstd_iterator": "cpp",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp"
+    }
+}
