@@ -1,0 +1,7 @@
+TARGET_EFR32_CUSTOM/
+mbed-os/
+flashefr32custom_debug.jlink
+flashefr32custom.jlink
+.mbed
+*.txt
+
