@@ -83,12 +83,10 @@ void start_simple_udp_app(NetworkInterface * interface){
 #endif  
 
     if(MBED_CONF_APP_BUTTON_1 != NC){
-        app_print("Button 1 is connected to %s\n", MBED_CONF_APP_BUTTON_1);
         user_button_1.fall(&user_button_1_isr);
         user_button_1.mode(MBED_CONF_APP_BUTTON_MODE);
     }
     if(MBED_CONF_APP_BUTTON_2 != NC){
-        app_print("Button 2 is connected to %s\n", MBED_CONF_APP_BUTTON_2);
         user_button_2.fall(&user_button_2_isr);
         user_button_2.mode(MBED_CONF_APP_BUTTON_MODE);
     }
