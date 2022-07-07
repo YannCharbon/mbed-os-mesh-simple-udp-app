@@ -15,3 +15,5 @@ mbed-os/targets/TARGET_Silicon_Labs/TARGET_SL_RAIL/*
 mbed-os/platform/bare_metal/*
 mbed-os/drivers/usb/*
 mbed-os/TESTS/*
+mbed-os/connectivity/lwipstack/*
+mbed-os/connectivity/nanostack/sal-stack-nanostack/source/6LoWPAN/Thread/*
