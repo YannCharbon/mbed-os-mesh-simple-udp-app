@@ -64,7 +64,8 @@
             "mbed-mesh-api.wisun-operating-class": 2,
             "mbed-mesh-api.wisun-operating-mode": "0x2a",
             "mbed-mesh-api.wisun-network-size": 1,
-            "s2lp.provide-default": false
+            "s2lp.provide-default": false,
+            "mbed-mesh-api.use-malloc-for-heap": 1
         }
     }
 }

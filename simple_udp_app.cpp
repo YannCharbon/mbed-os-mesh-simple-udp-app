@@ -7,6 +7,8 @@
 
 #include "routing_table_utils.h"
 
+#define BUFFER_SIZE     2048
+
 #define MULTICAST_ADDR_STR "ff05::7"
 #define HOST_IP			"2a02:1210:741f:d700:dddb:37d3:148c:9c1f"
 #define HOST_PORT		42555
@@ -31,8 +33,8 @@ Thread btn_thread;
 static bool button_1_pressed = false;
 static bool button_2_pressed = false;
 
-char send_buffer[1024];
-char recv_buffer[1024];
+char send_buffer[BUFFER_SIZE];
+char recv_buffer[BUFFER_SIZE];
 
 void app_print(const char *fmt, ...) {
     va_list args;
@@ -127,11 +129,11 @@ void try_connect_to_server(){
 
 // Receive data from the server
 void receiveUDP() {
-    // Allocate 1K of data for UDP reception
+    // Allocate 2K of data for UDP reception
     while (1) {
         // recvfrom blocks until there is data
         SocketAddress source_addr;
-        nsapi_size_or_error_t size = socket.recvfrom(&source_addr, recv_buffer, 1024);
+        nsapi_size_or_error_t size = socket.recvfrom(&source_addr, recv_buffer, BUFFER_SIZE);
         if (size <= 0) {
             if (size == NSAPI_ERROR_WOULD_BLOCK){
                 continue; // OK... this is a non-blocking socket and there's no data on the line
@@ -179,6 +181,12 @@ void receiveUDP() {
             socket.sendto(sock_addr, send_buffer, strlen(send_buffer));            
         } else if (strcmp(recv_buffer, "BUTTON_INDICATION_MULTI") == 0){
             led_1 = !led_1;
+        } else if (strstr(recv_buffer, "SPEED_TEST_REQUEST_RESPONSE") != NULL){
+            SocketAddress sock_addr;
+            sock_addr.set_ip_address(host_addr_str);
+            sock_addr.set_port(HOST_PORT);
+            socket.sendto(sock_addr, recv_buffer, strlen(recv_buffer));
+            app_print("Sent SPEED_TEST_REQUEST_RESPONSE back to host\n");
         }
     }
 }
